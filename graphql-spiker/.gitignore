@@ -1,0 +1,11 @@
+.env
+.env.production
+.env.development
+credentials.json
+.DS_Store
+.vscode
+node_modules
+kubernetes
+dist
+# Test data, 20ish MB
+repository/medium

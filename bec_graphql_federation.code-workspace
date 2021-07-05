@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "bramble"
+	},
+	{
+		"path": "graphql-spiker"
+	},
+	{
+		"path": "graphql-spiker2"
+	}
+],
+  "settings": {}
+}

@@ -1,0 +1,26 @@
+# This is the prerequsite schema required
+# for fedaration by the gateway
+directive @boundary on OBJECT | FIELD_DEFINITION
+directive @spiker(table: String, field: String) on FIELD_DEFINITION
+
+type Service {
+  name: String!
+  version: String!
+  schema: String!
+}
+
+###################################
+
+type Trait @boundary {
+  id: ID!
+  portal: String!
+}
+
+type Query {
+  # The service query is used by the gateway when
+  # the service is first registered
+  service: Service! @spiker(table: "Service")
+  ###################################
+
+  trait(id: ID!): Trait @boundary @spiker(table: "Trait")
+}
