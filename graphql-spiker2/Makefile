@@ -3,8 +3,8 @@ REGION=au
 REGISTRY_ID=0
 DOCKER_REGISTRY=
 PROJECT=graphql-spiker
-REPO?=example
-PORT?=4000
+REPO?=example2
+PORT?=4001
 
 install:
 	@echo ">> Install"
@@ -29,13 +29,13 @@ clean:
 
 build: compile
 	@echo ">> Building docker image"
-	docker build -f $(shell pwd)/docker/Dockerfile -t $(DOCKER_REGISTRY)$(PROJECT):$(GIT_REF) .
+	docker build -f $(shell pwd)/docker/Dockerfile -t $(DOCKER_REGISTRY)$(PROJECT)-$(REPO):$(GIT_REF) .
 
 upload:
 	@echo ">> Pushing docker image"
 	aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
-	docker push $(DOCKER_REGISTRY)$(PROJECT):$(GIT_REF)
+	docker push $(DOCKER_REGISTRY)$(PROJECT)-$(REPO):$(GIT_REF)
 
 docker_run:
 	@echo ">> Running docker image"
-	docker run -p 8000:4001 -p 4000:4000 --detach --name $(PROJECT) $(DOCKER_REGISTRY)$(PROJECT):$(GIT_REF)
+	docker run -p 8000:4001 -p 4000:4000 --detach --name $(PROJECT) $(DOCKER_REGISTRY)$(PROJECT)-$(REPO):$(GIT_REF)

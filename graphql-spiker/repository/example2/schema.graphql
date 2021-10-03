@@ -1,0 +1,13 @@
+# This is the prerequsite schema required
+# for federation by the gateway
+# directive @boundary on OBJECT | FIELD_DEFINITION
+directive @spiker(table: String, field: String) on FIELD_DEFINITION
+
+type Trait @key(fields: "id") @extends {
+  id: ID! @external
+  portal: String!
+}
+
+type Query {
+  traitPortal(id: ID!): Trait @spiker(table: "Trait")
+}

@@ -37,6 +37,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: async () => {},
+  introspection: true,
 });
 server.applyMiddleware({ app, cors: corsOptions });
 const PORT = process.env.PORT || 4000;

@@ -1,8 +1,8 @@
 FROM node:12.22.0-alpine3.10
 
 ENV NODE_ENV=production
-ENV REPO=example
-ENV PORT=4000
+ENV REPO=example2
+ENV PORT=4001
 
 RUN apk update && \
   apk add gettext ca-certificates

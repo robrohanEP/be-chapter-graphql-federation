@@ -8,6 +8,9 @@
 	},
 	{
 		"path": "graphql-spiker2"
+	},
+	{
+		"path": "hasura"
 	}
 ],
   "settings": {}

@@ -32,11 +32,12 @@ export function initSpiker() {
     return nameExt[0];
   });
 
-  const customDirectives = ``;
+  // const customDirectives = ``;
   //  directive @spiker(table: String, field: String) on FIELD_DEFINITION
   //
   // `;
-  const typeDefs = customDirectives + rawSchema;
+  // const typeDefs = customDirectives + rawSchema;
+  const typeDefs = rawSchema;
 
   const queries = evaluateSchema(typeDefs);
   return [typeDefs, makeResolvers(tables, queries)];
@@ -102,10 +103,10 @@ function evaluateSchema(typeDefs: string): SpikerQueryDef[] | undefined {
   const s = new Source(typeDefs);
   const d = parse(s);
 
-  let spikerQueries = undefined;
+  let spikerQueries: SpikerQueryDef[];
 
   d.definitions.forEach((def) => {
-    switch (def.kind) {
+    switch (def?.kind) {
       case "ObjectTypeDefinition":
         if (def.name.kind === "Name" && def.name.value === "Query") {
           spikerQueries = astQueryToSpikerQueries(def);
@@ -115,7 +116,7 @@ function evaluateSchema(typeDefs: string): SpikerQueryDef[] | undefined {
         // This should just be our @spiker definition
         break;
       default:
-        log("Unhandled --->", def.kind, "on", def["name"]?.value);
+        log("Unhandled --->", def?.kind); // , "on", def["name"]?.value);
     }
   });
 
