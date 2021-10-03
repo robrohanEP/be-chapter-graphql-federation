@@ -115,7 +115,7 @@ function evaluateSchema(typeDefs: string): SpikerQueryDef[] | undefined {
         // This should just be our @spiker definition
         break;
       default:
-        log("Unhandled --->", def.kind, "on", def["name"]?.value);
+        log("Unhandled --->", def.kind);
     }
   });
 

@@ -1,4 +1,4 @@
-GIT_REF=$(shell git rev-parse --short HEAD)
+GIT_REF=latest # $(shell git rev-parse --short HEAD)
 REGION=au
 REGISTRY_ID=0
 DOCKER_REGISTRY=
@@ -13,15 +13,15 @@ test:
 	@echo ">> Test"
 	npm run test
 
-compile:
+compile: clean
 	npm run build
-	cp -R src/public dist/public
+	cp -R src/public dist/publicd
 
 start: compile
 	@echo ">> Start"
 	REPO=$(REPO) npm run start
 
-clean: 
+clean:
 	@echo ">> Cleaning"
 #	rm -rf node_modules
 	rm -rf dist

@@ -1,0 +1,32 @@
+version: '3'
+services:
+  bramble:
+    image: bramble:latest
+    platform: linux/arm64
+    command: /bramble -conf /config.json
+    # enviroment:
+    ports:
+      - 8082:8082
+      - 8083:8083
+      - 8084:8084
+    depends_on:
+      - service1
+      - service2
+
+  service1:
+    image: graphql-spiker
+    platform: linux/arm64
+    environment:
+      REPO: example
+      PORT: 4000
+    ports:
+      - 4000:4000
+
+  service2:
+    image: graphql-spiker
+    platform: linux/arm64
+    environment:
+      REPO: example2
+      PORT: 4004
+    ports:
+      - 4004:4004
