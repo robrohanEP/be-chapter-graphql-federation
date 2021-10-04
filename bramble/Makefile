@@ -1,13 +1,12 @@
 
-# linux/arm64
 OS=linux
-ARCH=arm64
-EXTRA=/v8
-PLATFORM=$(OS)/$(ARCH) #$(EXTRA)
+# This Arch is set for Docker on an M1 Mac
+ARCH=arm64 #x86_64 amd64 .. wasm ;)
+PLATFORM=$(OS)/$(ARCH)
 
 build:
 	GOOS=$(OS) GOARCH=$(ARCH) go build -o bramble ./cmd/bramble
-#	./bramble -conf config.json
+#	Will be running: ./bramble -conf config.json
 	docker build --platform $(PLATFORM) -t bramble:latest .
 
 run:
