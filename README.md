@@ -55,6 +55,8 @@ bramble_1   | {"config":{"gateway-port":8082,"metrics-port":8084,"private-port":
 
 Once all the docker kinks are worked out, you can interact with the bramble admin area by going here: [http://localhost:8083/admin](http://localhost:8083/admin)
 
+![Admin Area](assets/admin.png)
+
 And you can query the combined schema here: [http://localhost:8082/playground](http://localhost:8082/playground)
 
 ### Example query
